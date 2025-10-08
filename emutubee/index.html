@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emutube</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" type="images/png" href="images/youtube-icon.png">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 240px;
+            transition: width 0.3s ease;
+            background-color: #f4f4f4;
+            height: 175vh;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar__categories {
+            padding: 10px;
+        }
+
+        .sidebar__category {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar__category i {
+            margin-right: 16px;
+            font-size: 24px;
+        }
+
+        .sidebar.collapsed .sidebar__category span {
+            display: none;
+        }
+
+        .header {
+            height: 60px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .mainBody {
+            margin-top: 60px;
+            margin-left: 240px;
+            flex: 1;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .mainBody.collapsed {
+            margin-left: 80px;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .video {
+            margin-bottom: 20px;
+        }
+
+        .video__thumbnail img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .video__details {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .author img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .title h3 {
+            margin: 0;
+        }
+        .recommended-title {
+            color: #f7f6f6; /* Kirmizi renk */
+            font-size: 45px; /* Yazi boyutu */
+            font-weight: bold; /* Kalin yazi */
+            text-transform: uppercase; /* Buyuk harf yap */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header__left">
+        <i id="menu-toggle" class="material-icons menu-toggle">menu</i>
+        <a href="index.html">
+            <img src="images/EMUTUBE.png" alt="Emutube Logo">
+        </a>
+        </div>
+        <div class="header__search">
+            <form action="">
+                <input type="text" placeholder="Search">
+                <button><i class="material-icons">search</i></button>
+            </form>
+        </div>
+        <div class="header__icons">            
+            <a href="upload.html"><i class="material-icons ">videocam</i></a>
+            <i class="material-icons">apps</i>
+            <i class="material-icons display-this">notifications</i>
+            <a href="channel.html"><i id="drop-down" class="material-icons display-this">account_circle</i></a>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar__categories">
+            <a href="index.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">home</i>
+                    <span>Home</span>
+                </div>
+            </a>
+            <a href="index.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">home</i>
+                    <span>Home</span>
+                </div>
+            </a>
+            <a href="trending.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">local_fire_department</i>
+                    <span>Trending</span>
+                </div>
+            </a>
+            <a href="subs.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">subscriptions</i>
+                    <span>Subscriptions</span>
+                </div>
+            </a>
+            <hr>
+            <a href="library.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">library_add_check</i>
+                    <span>Library</span>
+                </div>
+            </a>
+            <a href="history.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">history</i>
+                    <span>History</span>
+                </div>
+            </a>
+            <a href="channel-videos.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">play_arrow</i>
+                    <span>Your Videos</span>
+                </div>
+            </a>
+            <a href="watchlater.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">watch_later</i>
+                    <span>Watch Later</span>
+                </div>
+            </a>
+            <a  href="liked.html">
+                <div class="sidebar__category">
+                    <i class="material-icons">thumb_up</i>
+                    <span>Liked Videos</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="videos">
+        <div class="drop-down-container">
+            <h2 class="recommended-title">Recommended</h2>
+                     
+            <div class="dropdown-content-background">
+                <div class="dropdown-contents">
+                    <div class="dropdown-content">
+                        <i class="material-icons">videocam</i>
+                        <span>Create</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <i class="material-icons">settings</i>
+                        <span>Settings</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <i class="material-icons">person</i>
+                        <span>Switch Account</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>Recomended videos</h1>
+        <div class="videos__container">
+           
+        <!-- Single Video Starts Here -->
+        <div class="video">
+            <div class="video__thumbnail">
+             <a href="video.html"><img src="images/arka.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo.png" alt="">
+                </div>
+                <div class="title">
+                    <h3>Youtube Using CSS</h3>
+                    <a href="about.html"><small>Zeynep Pelin <i class="fas fa-check-circle"></i></small>
+                    <span><small>1M Views . 1 Months Ago</small></span></a>
+                </div>
+                
+            </div>
+            </a>
+        </div>
+
+        <!-- Single Video Starts Here -->
+        <div class="video">
+            <div class="video__thumbnail">
+                <a href="video1.html"> <img src="images/arka1.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo3.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Youtube Using HTML</h3>
+                    <a href="about.html"><small>Zeynep Pelin <i class="fas fa-check-circle"></i></small>
+                    <span><small>1M Views . 1 Months Ago</small></span></a>
+                </div>
+            </div>
+            </a>
+        </div>
+
+        
+
+        <!-- Single Video Starts Here -->
+        <div class="video">
+            <div class="video__thumbnail">
+                <a href="video2.html"><img src="images/arka2.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo4.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Youtube  Using JS</h3>
+                    <a href="about.html"><small>Zeynep Pelin <i class="fas fa-check-circle"></i></small>
+                    <span><small>100M Views . 2 Months Ago</small></span></a>
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <!-- Single Video Starts Here -->
+        <div class="video">
+            <div class="video__thumbnail">
+                <a href="video.html"><img src="images/arka3.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo5.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Learn to take photos</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small>
+                    <span><small>1M Views . 6 Months Ago</small></span></a>
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <!-- Single Video Starts Here -->
+        <div class="video">
+            <div class="video__thumbnail">
+               <a href="video.html"><img src="images/arka4.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo6.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you like cats?</h3>
+                    <a href="about.html"><small>Zeynep Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>1.5M Views . 8 Months Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+        <!-- Single Video Starts Here -->
+        <div class="video">
+            <div class="video__thumbnail">
+            <a href="video.html"><img src="images/arka6.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo7.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you want to see the sights?</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>3M Views . 1 Years Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+          <!-- Single Video Starts Here -->
+          <div class="video">
+            <div class="video__thumbnail">
+            <a href="video.html"><img src="images/arka7.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo8.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you want to see the sights?</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>3M Views . 1 Years Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+          <!-- Single Video Starts Here -->
+          <div class="video">
+            <div class="video__thumbnail">
+            <a href="video.html"><img src="images/arka8.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo9.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you want to see the sights?</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>3M Views . 1 Years Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+          <!-- Single Video Starts Here -->
+          <div class="video">
+            <div class="video__thumbnail">
+            <a href="video.html"><img src="images/arka9.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo10.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you want to see the sights?</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>3M Views . 1 Years Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+          <!-- Single Video Starts Here -->
+          <div class="video">
+            <div class="video__thumbnail">
+            <a href="video.html"><img src="images/arka10.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo11.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you want to see the sights?</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>3M Views . 1 Years Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+          <!-- Single Video Starts Here -->
+          <div class="video">
+            <div class="video__thumbnail">
+            <a href="video.html"><img src="images/arka11.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo12.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you want to see the sights?</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>3M Views . 1 Years Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+          <!-- Single Video Starts Here -->
+          <div class="video">
+            <div class="video__thumbnail">
+            <a href="video.html"><img src="images/arka12.jpeg" alt=""></a>
+            </div>
+            <a href="about.html">
+            <div class="video__details">
+                <div class="author">
+                    <img src="images/logo13.jpeg" alt="">
+                </div>
+                <div class="title">
+                    <h3>Do you want to see the sights?</h3>
+                    <a href="about.html"><small>Pelin <i class="fas fa-check-circle"></i></small></a>
+                    <span><small>3M Views . 1 Years Ago</small></span>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainBody = document.getElementById('mainBody');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            mainBody.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+</html>
